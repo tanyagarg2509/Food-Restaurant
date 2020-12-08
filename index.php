@@ -14,6 +14,7 @@ session_start();
     <link href='https://fonts.googleapis.com/css?family=Lora' rel='stylesheet' type='text/css'>
   </head>
 <body>
+ 
   <header>
     <nav id="header-nav" class="navbar navbar-default">
       <div class="container">
@@ -126,13 +127,16 @@ session_start();
       function(data, status){
         var result = JSON.parse(data);
         if(result.success){
-          alert("Data: " + result.success + "\nStatus: " + status);
+          myToastFunction("Added to Cart");
         }
         else{
-          alert("Data: " + result.success + "\nStatus: " + status);
+          myToastFunction("Something Went Wrong.");
         }
       });
     }
   </script>
+   <?php 
+     include 'toast.php';
+  ?>
 </body>
 </html>

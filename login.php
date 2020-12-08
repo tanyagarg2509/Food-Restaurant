@@ -16,6 +16,9 @@ if(isset($_SESSION['userid'])){
   <title>Sign in</title>
 </head>
 <body>
+	<?php
+		include 'toast.php';
+	?>
   <!-- <h2 style="color: #fff;">Sign in to Order Now!</h2> -->
 <div class="container" id="container">
 	<div class="form-container sign-up-container">

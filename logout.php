@@ -1,6 +1,7 @@
 <?php
     session_start();
-    // destroy the session
     session_destroy();
+    session_start();
+    $_SESSION['toast'] = "Successfully Logout.";
     header("location: index.php");
 ?>
