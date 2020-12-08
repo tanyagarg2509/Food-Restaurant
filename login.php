@@ -2,7 +2,7 @@
 <?php
 session_start();
 if(isset($_SESSION['userid'])){
-	header("location:index.html");
+	header("location:index.php");
 }
 ?>
 <!DOCTYPE html>
@@ -50,8 +50,8 @@ if(isset($_SESSION['userid'])){
 			</div>
 			
 			<span>or use your account</span>
-			<input type="email" placeholder="Email" autocomplete="off"/>
-            <input type="password" placeholder="Password" autocomplete="off"/>
+			<input type="email" placeholder="Email" name="email" autocomplete="off"/>
+            <input type="password" placeholder="Password" name="password" autocomplete="off"/>
             <a href="#">Forgot your password?</a>
             <input type ="submit" name="submit" value="Sign In" class="submit"/>
 

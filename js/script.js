@@ -18,7 +18,7 @@ var categoryHtml = "snippets/category-snippet.html";
 var menuItemsUrl = 
   "https://davids-restaurant.herokuapp.com/menu_items.json?category=";
 var menuItemsTitleHtml = "snippets/menu-items-title.html";
-var menuItemHtml = "snippets/menu-item.html";
+var menuItemHtml = "snippets/menu-item.php";
 // Convenience function for inserting innerHTML for 'select'
 var insertHtml = function (selector, html) {
   var targetElem = document.querySelector(selector);
@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 // called buildAndShowHomeHTML that will receive all the categories from the server
 // and process them: choose random category, retrieve home HTML snippet, insert that
 // random category into the home HTML snippet, and then insert that snippet into our
-// main page (index.html).
+// main page (index.php).
 //
 // TODO: STEP 1: Substitute [...] below with the *value* of the function buildAndShowHomeHTML, 
 // so it can be called when server responds with the categories data.
@@ -258,6 +258,11 @@ function buildMenuItemsViewHtml(categoryMenuItems,
       insertProperty(html, 
                      "description",
                      menuItems[i].description);
+    html = 
+    insertProperty(html, 
+                  "id",
+                  menuItems[i].id);
+                
     // Add clearfix after every second menu item
     if (i % 2 != 0) {
       html += 

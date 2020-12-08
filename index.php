@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -15,12 +18,12 @@
     <nav id="header-nav" class="navbar navbar-default">
       <div class="container">
         <div class="navbar-header">
-          <a href="index.html" class="pull-left visible-md visible-lg">
+          <a href="index.php" class="pull-left visible-md visible-lg">
             <div id="logo-img" alt="Logo image"></div>
           </a>
 
           <div class="navbar-brand">
-            <a href="index.html"><h1>Food Ordering</h1></a>
+            <a href="index.php"><h1>Food Ordering</h1></a>
           </div>
 
           <button id="navbarToggle" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapsable-nav" aria-expanded="false">
@@ -34,7 +37,7 @@
         <div id="collapsable-nav" class="collapse navbar-collapse">
            <ul id="nav-list" class="nav navbar-nav navbar-right">
             <li id="navHomeButton" class="visible-xs active">
-              <a href="index.html">
+              <a href="index.php">
                 <span class="glyphicon glyphicon-home"></span> Home</a>
             </li>
             <li id="navMenuButton">
@@ -42,12 +45,23 @@
                 <span class="glyphicon glyphicon-cutlery"></span><br class="hidden-xs"> Menu</a>
             </li>
             <li>
-              <a href="login.php">
-                <span class="glyphicon glyphicon-info-sign"></span><br class="hidden-xs"> Login</a>
+              <?php
+              if(isset($_SESSION['userid']) && $_SESSION['userid']!=""){
+                echo '<a href="logout.php"><span class="glyphicon glyphicon-info-sign"></span><br class="hidden-xs"> Logout</a>';
+              }else{
+                echo '<a href="login.php"><span class="glyphicon glyphicon-info-sign"></span><br class="hidden-xs"> Login</a>';
+              }
+              ?>
             </li>
             <li>
-              <a href="cart.html">
-                <span class="glyphicon glyphicon-certificate"></span><br class="hidden-xs"> Go To Cart</a>
+            <?php
+              if(isset($_SESSION['userid']) && $_SESSION['userid']!=""){
+                echo '<a href="cart.php">
+                <span class="glyphicon glyphicon-certificate"></span><br class="hidden-xs"> Go To Cart</a>';
+              }else{
+                echo '<a href="login.php"><span class="glyphicon glyphicon-certificate"></span><br class="hidden-xs"> Go To Cart</a>';
+              }
+              ?>
             </li>
             <li id="phone" class="hidden-xs">
               <a href="tel:410-602-5008">
@@ -101,5 +115,24 @@
   <script src="js/bootstrap.min.js"></script>
   <script src="js/ajax-utils.js"></script>
   <script src="js/script.js"></script>
+  <script>
+    console.log('hello');
+    function addtocart(itemId,category){
+      $.post("addtocart.php",
+      {
+        id: itemId,        
+        category:category,
+      },
+      function(data, status){
+        var result = JSON.parse(data);
+        if(result.success){
+          alert("Data: " + result.success + "\nStatus: " + status);
+        }
+        else{
+          alert("Data: " + result.success + "\nStatus: " + status);
+        }
+      });
+    }
+  </script>
 </body>
 </html>
