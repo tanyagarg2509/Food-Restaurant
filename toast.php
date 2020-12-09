@@ -45,8 +45,7 @@
 
 <script>
 <?php
-    session_start();
- 
+
     if(isset($_SESSION['toast'])){
         $msg=$_SESSION['toast'];
         echo "var toast='$msg';";
